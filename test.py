@@ -15,15 +15,24 @@ df_test['_dataset']  = 'test'
 
 df_all = pd.concat([df_train, df_test], axis = 0, ignore_index=True)
 
-print(df_all.head())
 
 # clean data 
 
 clean_df = clean_all(df_all)
-
 # add_features
 
 final_df = add_features(clean_df)
+
+# priprema za trening
+
+# 1. Razdvajanje na osnovu markera koji si napravio
+df_train = final_df[final_df['_dataset'] == 'train'].copy()
+df_test = final_df[final_df['_dataset'] == 'test'].copy()
+
+# 2. Brisanje pomoćne kolone da ne smeta modelu
+df_train = df_train.drop(columns=['_dataset'])
+df_test = df_test.drop(columns=['_dataset'])
+
 
 # model_itd....
 
@@ -33,9 +42,13 @@ import numpy as np
 from catboost import CatBoostRegressor, Pool
 
 X = df_train.drop(columns=['price'])
+
+print(X.isna().sum())
+
 y = df_train['price']
 
-cat_features = ['brand', 'model', 'brand_class', 'cab_type', 'is_4wd', 'is_luxury_trim'] 
+cat_features = X.select_dtypes(include=['object', 'category']).columns.tolist()
+print(cat_features)
 
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
 scores = []

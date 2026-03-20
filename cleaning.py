@@ -5,6 +5,8 @@ def clean_all(df_combined : pd.DataFrame) -> pd.DataFrame:
     """
         vraca ocisceni dataframe...
     """
+    
+    df_combined = clean_fuel_type(df_combined)
 
     df = df_combined.copy()
     return df

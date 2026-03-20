@@ -14,5 +14,8 @@ def add_features(df_cleaned : pd.DataFrame) -> pd.DataFrame:
     df_cleaned['brand'].str.contains('Tesla', case=False, na=False) |
     df_cleaned['model'].str.contains('LONG RANGE|P100D|RECHARGE|PURE ELECTRIC', case=False, na=False)
     ).astype(int)
+    
 
-    return df_cleaned
+    
+
+    return df_cleaned.drop(['model','engine'], axis = 1)
