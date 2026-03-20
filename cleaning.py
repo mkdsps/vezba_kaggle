@@ -5,7 +5,8 @@ def clean_all(df_combined : pd.DataFrame) -> pd.DataFrame:
     """
         vraca ocisceni dataframe...
     """
-
+    df_combined = clean_fuel_type(df_combined)
+    df_combined['clean_title'] = df_combined['clean_title'].fillna('Unknown')
     df = df_combined.copy()
     return df
 
@@ -48,3 +49,4 @@ def clean_fuel_type(df_combined : pd.DataFrame) -> pd.DataFrame:
     df_combined['accident']= df_combined['accident'].fillna('Unknown')
     
     return df_combined
+
