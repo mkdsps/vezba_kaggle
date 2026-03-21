@@ -1,0 +1,21 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# CatBoost files
+catboost_info/
+*.cbm
+*.bin
+*.tmp
+
+# Jupyter (ako koristiš)
+.ipynb_checkpoints/
+
+# Environment
+venv/
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
