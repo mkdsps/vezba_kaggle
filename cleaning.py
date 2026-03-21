@@ -50,3 +50,6 @@ def clean_fuel_type(df_combined : pd.DataFrame) -> pd.DataFrame:
     df_combined['accident']= df_combined['accident'].fillna('Unknown')
     
     return df_combined
+
+
+
